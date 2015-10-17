@@ -4,6 +4,11 @@ var Modal = require('react-modal');
 
 var RectSticker = React.createClass({
     componentDidMount: function () {
+          console.log(this.props.blah);
+          if (this.props.blah) {
+            this.setState(this.props.blah);
+          }
+
         this.props.onImageChange((function (image) {
             this.setState({image: image});
         }).bind(this));
@@ -37,7 +42,7 @@ var RectSticker = React.createClass({
 
                     <h2>Wprowadź tekst...</h2>
                     <form>
-                        <textarea value={this.state.editedText}
+                        <textarea  className="modal__textarea" value={this.state.editedText}
                                   onChange={(function (e) { this.setState({editedText: e.target.value}); }).bind(this)}/>
                     </form>
                     <button onClick={this.submitModal}>OK</button>

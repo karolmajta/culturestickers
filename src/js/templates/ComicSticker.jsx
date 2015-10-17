@@ -5,6 +5,11 @@ var classnames = require('classnames');
 
 var ComicSticker = React.createClass({
     componentDidMount: function () {
+        console.log(this.props.blah);
+        if (this.props.blah) {
+          this.setState(this.props.blah);
+        }
+
         this.props.onImageChange((function (image) {
             var s = {};
             s[this.state.active] = image;
@@ -60,7 +65,7 @@ var ComicSticker = React.createClass({
 
                     <h2>Wprowadź tekst...</h2>
                     <form>
-                        <textarea value={this.state.editedText}
+                        <textarea className="modal__textarea" value={this.state.editedText}
                                   onChange={(function (e) { this.setState({editedText: e.target.value}); }).bind(this)}/>
                     </form>
                     <button onClick={this.submitModal}>OK</button>

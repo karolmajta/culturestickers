@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var _ = require('underscore');
+var request = require('browser-request');
 
 var images = [
     {url: 'http://placehold.it/350x350'},
@@ -31,7 +32,9 @@ var ImagePicker = React.createClass({
                 <div>
                     {_.map(this.state.images, function (i) {
                         return (
-                            <img src={i.url} key={i.url} onClick={(function () { this.props.onImageSelect(i); }).bind(this)}  />
+                            <div className="image-container image-container--3-in-row">
+                                <img className="image-responsive" src={i.url} key={i.url} onClick={(function () { this.props.onImageSelect(i); }).bind(this)}  />
+                            </div>
                         );
                     }, this)}
                     <div>
@@ -43,9 +46,16 @@ var ImagePicker = React.createClass({
     },
     search: function () {
         this.setState({loading: true, images: []});
-        window.setTimeout((function () {
-            this.setState({loading: false, images: images});
-        }).bind(this), 2000);
+        var url = 'https://www.rijksmuseum.nl/api/en/collection/?key=A2wwhduk&format=json&v=&s=&q='+this.state.search+'&ii=0&p=1';
+        request(url, (function(er, response, body) {
+            this.setState({loading: false});
+            if(er) {
+                throw er;
+            } else {
+                var data = JSON.parse(body);
+                this.setState({images: _.filter(_.pluck(data.artObjects, 'webImage'), _.identity)});
+            }
+        }).bind(this));
     }
 });
 

@@ -1,0 +1,48 @@
+.template-select {
+  padding-top: 80px;
+  .template {
+    width: 60%;
+    &.comic {
+      .comic-box {
+        height: 50px;
+        .subtitle {
+          padding: 5px;
+          font-size: 1.2em;
+          font-weight: bold;
+          &.first, &.third {
+            border-radius: 0 0 10px 0;
+          }
+          &.second {
+            border-radius: 0 0 0 10px;
+          }
+        }
+      }
+    }
+    &.round {
+      .subtitle {
+        font-size: 1.2em;
+        font-weight: bold;
+        height: 50px;
+        margin-top: -20px;
+        padding-top: 8px;
+      }
+    }
+    &.rect {
+      position: relative;
+      .comic-box {
+        height: 150px;
+      }
+      .subtitle {
+        padding: 10px;
+        font-size: 1.2em;
+        font-weight: bold;
+        &.upper {
+          border-radius: 0 0 0 20px;
+        }
+        &.lower {
+          border-radius: 0 20px 0 0;
+        }
+      }
+    }
+  }
+}

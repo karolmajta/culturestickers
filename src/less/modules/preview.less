@@ -1,0 +1,75 @@
+.preview {
+  padding-top: 80px;
+  .btn-default{
+    background: none;
+    border: 0px;
+    color: rgba(0,0,0,0.5);
+    &:hover{
+    color: rgba(0,0,0,1);
+    }
+  }
+  .btn-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  .btn-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .template {
+    width: 80%;
+    &.comic {
+      .comic-box {
+        height: 200px;
+        opacity: 0.6;
+        &.active {
+          opacity: 1;
+        }
+        &:hover {
+          opacity: 1;
+        }
+        .subtitle {
+          padding: 10px;
+          font-size: 1.5em;
+          font-weight: bold;
+          max-width: 70%;
+          &.first, &.third {
+            border-radius: 0 0 20px 0;
+          }
+          &.second {
+            border-radius: 0 0 0 20px;
+          }
+        }
+      }
+    }
+    &.rect {
+      .comic-box {
+        height: 600px;
+      }
+      .subtitle {
+        max-width: 70%;
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 20px;
+        &.upper {
+          border-radius: 0 0 0 20px;
+        }
+        &.lower {
+          border-radius: 0 20px 0 0;
+        }
+      }
+    }
+    &.round {
+      .subtitle {
+        height: 150px;
+        margin-top: -40px;
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 20px;
+      }
+    }
+  }
+}

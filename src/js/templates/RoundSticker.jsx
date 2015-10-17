@@ -5,6 +5,12 @@ var $ = require('jquery');
 
 var RoundSticker = React.createClass({
     componentDidMount: function () {
+      console.log(this.props.blah);
+      if (this.props.blah) {
+        this.setState(this.props.blah);
+      }
+
+
         var comicBox = React.findDOMNode(this.refs.comicBox);
         var $comicBox = $(comicBox);
         $comicBox.height($comicBox.width());
@@ -47,7 +53,7 @@ var RoundSticker = React.createClass({
 
                     <h2>Wprowadź tekst...</h2>
                     <form>
-                        <textarea value={this.state.editedText}
+                        <textarea  className="modal__textarea" value={this.state.editedText}
                                   onChange={(function (e) { this.setState({editedText: e.target.value}); }).bind(this)}/>
                     </form>
                     <button onClick={this.submitModal}>OK</button>
