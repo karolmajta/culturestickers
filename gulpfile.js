@@ -8,6 +8,7 @@ var reactify = require('reactify');
 var source = require('vinyl-source-stream');
 var connect = require('gulp-connect');
 var less = require('gulp-less');
+var sourcemaps = require('gulp-sourcemaps');
 
 
 var opts = {
@@ -25,6 +26,7 @@ b.transform(reactify);
 
 gulp.task('browserify', function () {
     b.bundle().pipe(source('index.js'))
+        .on('error', swallowError)
         .pipe(gulp.dest('dist/js'))
         .pipe(connect.reload());
 });
@@ -37,10 +39,12 @@ gulp.task('index', function () {
 
 gulp.task('less', function () {
     return gulp.src(['src/less/index.less'])
+        .pipe(sourcemaps.init())
         .pipe(less({
             paths: [ path.join(__dirname, 'src/less'), path.join(__dirname, 'node_modules') ]
         }))
         .on('error', swallowError)
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist/css'))
         .pipe(connect.reload());
 });

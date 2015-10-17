@@ -24,9 +24,13 @@ var Preview = React.createClass({
         return (
             <div className='preview'>
                 <div>
-                    <button className='close'
+                    <button className="btn btn-default btn-left"
                             onClick={this.props.onCancel}>
                         <i className="chevron-next fa fa-chevron-left fa-3x" />
+                    </button>
+                    <button className='btn btn-default btn-right'
+                            onClick={this.props.onSave}>
+                        <i className="fa fa-file-pdf-o fa-3x"/>
                     </button>
                 </div>
                 <div>

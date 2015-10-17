@@ -1,12 +1,12 @@
 var React = require('react/addons');
 var CSSTransitionGroup = React.addons.CSSTransitionGroup;
 var classnames = require('classnames');
+var snapshot = require('./snapshot.js');
 var _ = require('underscore');
 
 var ImagePicker = require('./ImagePicker.jsx');
 var TemplateSelect = require('./TemplateSelect.jsx');
 var Preview = require('./Preview.jsx');
-
 
 var App = React.createClass({
     componentDidMount: function () {
@@ -31,9 +31,15 @@ var App = React.createClass({
     },
     leftPane: function () {
         if (this.state.template) {
+
             return <Preview key='preview'
                             template={this.state.template}
                             onCancel={(function () { this.setState({template: null}); }).bind(this)}
+                            onSave={(function () {
+                              snapshot( document.getElementsByClassName('template')[0]).then(function(data){
+                                  console.log(data);
+                              });
+                          }).bind(this)}
                             onImageChange={(function (fn) { this.imageChangeListener = fn; }).bind(this)}/>
         } else {
             this.imageChangeListener = _.noop;

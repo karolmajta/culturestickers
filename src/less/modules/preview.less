@@ -1,10 +1,24 @@
 .preview {
   padding-top: 80px;
-  .close {
+  .btn-default{
+    background: none;
+    border: 0px;
+    color: rgba(0,0,0,0.5);
+    &:hover{
+    color: rgba(0,0,0,1);
+    }
+  }
+  .btn-left {
     position: absolute;
     top: 20px;
     left: 20px;
   }
+  .btn-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
   .template {
     width: 80%;
     &.comic {
@@ -21,7 +35,7 @@
           padding: 10px;
           font-size: 1.5em;
           font-weight: bold;
-          max-width: 50%;
+          max-width: 70%;
           &.first, &.third {
             border-radius: 0 0 20px 0;
           }

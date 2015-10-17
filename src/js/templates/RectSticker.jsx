@@ -37,7 +37,7 @@ var RectSticker = React.createClass({
 
                     <h2>Wprowadź tekst...</h2>
                     <form>
-                        <textarea value={this.state.editedText}
+                        <textarea  className="modal__textarea" value={this.state.editedText}
                                   onChange={(function (e) { this.setState({editedText: e.target.value}); }).bind(this)}/>
                     </form>
                     <button onClick={this.submitModal}>OK</button>
