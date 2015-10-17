@@ -61,7 +61,7 @@ gulp.task('connect', function () {
 gulp.task('watch', function () {
     gulp.watch(['./src/html/**/*.html'], ['index']);
     gulp.watch(['./src/js/**/*'], ['browserify']);
-    gulp.watch(['./src/less/*.less'], ['less']);
+    gulp.watch(['./src/less/**/*.less'], ['less']);
 });
 
 gulp.task('build', ['index', 'less', 'assets', 'browserify']);
