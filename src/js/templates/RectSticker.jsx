@@ -4,6 +4,11 @@ var Modal = require('react-modal');
 
 var RectSticker = React.createClass({
     componentDidMount: function () {
+          console.log(this.props.blah);
+          if (this.props.blah) {
+            this.setState(this.props.blah);
+          }
+
         this.props.onImageChange((function (image) {
             this.setState({image: image});
         }).bind(this));

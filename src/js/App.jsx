@@ -13,21 +13,34 @@ var App = React.createClass({
         this.imageChangeListener = _.noop;
     },
     getInitialState: function () {
-        return {template: null}
+        return {template: null, print: false, blah: null}
     },
     render: function() {
+      if(!this.state.print)
+      {
         return (
-            <div>
-                <div className={classnames('left-pane', {folded: this.state.template})}>
-                    <CSSTransitionGroup transitionName="left-pane-transition" transitionLeave={false}>
-                        {this.leftPane()}
-                    </CSSTransitionGroup>
-                </div>
-                <div className={classnames('right-pane', {folded: !this.state.template})}>
-                    <ImagePicker onImageSelect={this.onImageSelect} />
-                </div>
-            </div>
+          <div>
+              <div className={classnames('left-pane', {folded: this.state.template})}>
+                  <CSSTransitionGroup transitionName="left-pane-transition" transitionLeave={false}>
+                      {this.leftPane()}
+                  </CSSTransitionGroup>
+              </div>
+              <div className={classnames('right-pane', {folded: !this.state.template})}>
+                  <ImagePicker onImageSelect={this.onImageSelect} />
+              </div>
+          </div>
         );
+      } else {
+        return <div className="print-view"><Preview key='preview'
+                        template={this.state.template}
+                        onCancel={(function () { this.setState({print: false}); }).bind(this)}
+                        blah={this.state.blah}
+                        onSave={(function () {
+                          window.print();
+                      }).bind(this)}
+                        onImageChange={(function (fn) { this.imageChangeListener = fn; }).bind(this)}/></div>
+      }
+
     },
     leftPane: function () {
         if (this.state.template) {
@@ -35,10 +48,9 @@ var App = React.createClass({
             return <Preview key='preview'
                             template={this.state.template}
                             onCancel={(function () { this.setState({template: null}); }).bind(this)}
-                            onSave={(function () {
-                              snapshot( document.getElementsByClassName('template')[0]).then(function(data){
-                                  console.log(data);
-                              });
+                            onSave={(function (state) {
+                              console.log('state:', state);
+                              this.setState({print: true, blah: state});
                           }).bind(this)}
                             onImageChange={(function (fn) { this.imageChangeListener = fn; }).bind(this)}/>
         } else {

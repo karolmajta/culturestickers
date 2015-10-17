@@ -5,6 +5,12 @@ var $ = require('jquery');
 
 var RoundSticker = React.createClass({
     componentDidMount: function () {
+      console.log(this.props.blah);
+      if (this.props.blah) {
+        this.setState(this.props.blah);
+      }
+
+
         var comicBox = React.findDOMNode(this.refs.comicBox);
         var $comicBox = $(comicBox);
         $comicBox.height($comicBox.width());
