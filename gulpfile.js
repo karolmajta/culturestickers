@@ -50,8 +50,10 @@ gulp.task('less', function () {
 });
 
 gulp.task('assets', function () {
-    gulp.src(['node_modules/font-awesome/fonts/**/*'])
-        .pipe(gulp.dest('dist/fonts'));
+  gulp.src(['node_modules/font-awesome/fonts/**/*'])
+      .pipe(gulp.dest('dist/fonts'));
+  gulp.src(['src/img/**/*'])
+      .pipe(gulp.dest('dist/img'));
 });
 
 gulp.task('connect', function () {

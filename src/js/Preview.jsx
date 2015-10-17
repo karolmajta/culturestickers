@@ -19,7 +19,7 @@ texts = {
 
 var Preview = React.createClass({
     componentDidMount: function () {
-        
+
     },
     render: function() {
         var Elem = templates[this.props.template];
