@@ -1,0 +1,243 @@
+@import 'bootstrap/less/bootstrap';
+@import 'font-awesome/less/font-awesome';
+
+html{
+  min-height: 100%;
+  position: relative;
+}
+
+body{
+  height: 100%;
+}
+
+
+.left-pane {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 80%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: darkseagreen;
+  transition: right 0.5s ease-in;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &.folded {
+    right: 65%;
+  }
+}
+
+.right-pane {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 35%;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: rosybrown;
+  transition: left 0.5s ease-in;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &.folded {
+    left: 20%;
+  }
+}
+
+.template {
+  background-color: white;
+  padding: 5px;
+  margin: 40px auto;
+  cursor: pointer;
+  &.round {
+    background-color: transparent;
+    .comic-box {
+      border-radius: 50%;
+      border: 5px solid white;
+    }
+    .subtitle {
+      background-color: white;
+      border-radius: 30px;
+      border: 5px solid white;
+      text-align: center;
+    }
+  }
+  &.rect {
+    position: relative;
+    .subtitle {
+      position: absolute;
+      background: white;
+      &.upper {
+        top: 0;
+        right: 0;
+      }
+      &.lower {
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+  &.comic {
+    .comic-box {
+      position: relative;
+      .subtitle {
+        position: absolute;
+        top: 0;
+        background-color: white;
+        &.first, &.third {
+          left: 0;
+        }
+        &.second {
+          right: 0;
+        }
+      }
+    }
+  }
+}
+
+.template-select {
+  padding-top: 80px;
+  .template {
+    width: 60%;
+    &.comic {
+      .comic-box {
+        height: 50px;
+        .subtitle {
+          padding: 5px;
+          font-size: 1.2em;
+          font-weight: bold;
+          &.first, &.third {
+            border-radius: 0 0 10px 0;
+          }
+          &.second {
+            border-radius: 0 0 0 10px;
+          }
+        }
+      }
+    }
+    &.round {
+      .subtitle {
+        font-size: 1.2em;
+        font-weight: bold;
+        height: 50px;
+        margin-top: -20px;
+        padding-top: 8px;
+      }
+    }
+    &.rect {
+      position: relative;
+      .comic-box {
+        height: 150px;
+      }
+      .subtitle {
+        padding: 10px;
+        font-size: 1.2em;
+        font-weight: bold;
+        &.upper {
+          border-radius: 0 0 0 20px;
+        }
+        &.lower {
+          border-radius: 0 20px 0 0;
+        }
+      }
+    }
+  }
+}
+
+.preview {
+  padding-top: 80px;
+  .close {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  .template {
+    width: 80%;
+    &.comic {
+      .comic-box {
+        height: 200px;
+        opacity: 0.6;
+        &.active {
+          opacity: 1;
+        }
+        &:hover {
+          opacity: 1;
+        }
+        .subtitle {
+          padding: 10px;
+          font-size: 1.5em;
+          font-weight: bold;
+          max-width: 50%;
+          &.first, &.third {
+            border-radius: 0 0 20px 0;
+          }
+          &.second {
+            border-radius: 0 0 0 20px;
+          }
+        }
+      }
+    }
+    &.rect {
+      .comic-box {
+        height: 600px;
+      }
+      .subtitle {
+        max-width: 70%;
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 20px;
+        &.upper {
+          border-radius: 0 0 0 20px;
+        }
+        &.lower {
+          border-radius: 0 20px 0 0;
+        }
+      }
+    }
+    &.round {
+      .subtitle {
+        height: 150px;
+        margin-top: -40px;
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 20px;
+      }
+    }
+  }
+}
+
+.template {
+  .comic-box {
+    background: red;
+    margin: 5px 0;
+    &:first-child {
+      margin: 0;
+    }
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+
+// transitions
+.left-pane-transition-enter {
+  opacity: 0.00;
+  transition: opacity .2s ease-in, padding-left .2s ease-out;
+}
+
+.left-pane-transition-enter.left-pane-transition-enter-active {
+  opacity: 1;
+}
+
+.left-pane-transition-leave {
+  opacity: 0.0;
+  transition: opacity .2s ease-in, padding-left .2s ease-out;
+}
+
+.left-pane-transition-leave.left-pane-transition-leave-active {
+  opacity: 0.0;
+}

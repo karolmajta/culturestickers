@@ -1,4 +1,5 @@
 'use strict';
+var path = require('path');
 
 var gulp = require('gulp');
 
@@ -6,7 +7,7 @@ var browserify = require('browserify');
 var reactify = require('reactify');
 var source = require('vinyl-source-stream');
 var connect = require('gulp-connect');
-var sass = require('gulp-sass');
+var less = require('gulp-less');
 
 
 var opts = {
@@ -29,6 +30,20 @@ gulp.task('index', function () {
             .pipe(connect.reload());
 });
 
+gulp.task('less', function () {
+    return gulp.src(['src/less/index.less'])
+        .pipe(less({
+            paths: [ path.join(__dirname, 'src/less'), path.join(__dirname, 'node_modules') ]
+        }))
+        .pipe(gulp.dest('./dist/css'))
+        .pipe(connect.reload());
+});
+
+gulp.task('assets', function () {
+    gulp.src(['node_modules/font-awesome/fonts/**/*'])
+        .pipe(gulp.dest('dist/fonts'));
+});
+
 gulp.task('connect', function () {
    connect.server({
        host: '0.0.0.0',
@@ -40,8 +55,8 @@ gulp.task('connect', function () {
 gulp.task('watch', function () {
     gulp.watch(['./src/html/**/*.html'], ['index']);
     gulp.watch(['./src/js/**/*'], ['browserify']);
-    gulp.watch(['./src/sass/*.sass'], ['sass']);
+    gulp.watch(['./src/less/*.less'], ['less']);
 });
 
-gulp.task('build', ['index', 'browserify']);
+gulp.task('build', ['index', 'less', 'assets', 'browserify']);
 gulp.task('default', ['build', 'watch', 'connect']);
