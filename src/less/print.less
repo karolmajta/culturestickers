@@ -1,11 +1,10 @@
 .print-view{
-  max-width: 70%;
+  max-width: 500px;
   margin: 0px auto;
   .preview .template.round{
     width: 350px;
     height: 350px;
   }
-  .preview .template.round .subtitle,
   .template.round .comic-box,
   .preview .template.rect .comic-box
    {
@@ -13,16 +12,20 @@
     &:after{
       content: '';
       z-index: -1;
-      width: 100%;
-      height: 100%;
+      width: 108%;
+      height: 108%;
       border: 1px dashed black;
       display: block;
-      top: -10px;
-      left: -10px;
+      top: -4%;
+      left: -4%;
       position: absolute;
-      padding: 10px;
       border-radius: 30px;
     }
+  }
+  .preview .template.round .subtitle{
+    background: #eee;
+    z-index: 2;
+    position: relative;
   }
   .template.round .comic-box{
     &:after{
