@@ -15,6 +15,11 @@ var opts = {
     debug: true
 };
 
+function swallowError (error) {
+  console.log(error.toString());
+  this.emit('end');
+}
+
 var b = browserify(opts);
 b.transform(reactify);
 
@@ -35,6 +40,7 @@ gulp.task('less', function () {
         .pipe(less({
             paths: [ path.join(__dirname, 'src/less'), path.join(__dirname, 'node_modules') ]
         }))
+        .on('error', swallowError)
         .pipe(gulp.dest('./dist/css'))
         .pipe(connect.reload());
 });

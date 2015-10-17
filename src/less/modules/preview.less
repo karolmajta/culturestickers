@@ -1,0 +1,61 @@
+.preview {
+  padding-top: 80px;
+  .close {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  .template {
+    width: 80%;
+    &.comic {
+      .comic-box {
+        height: 200px;
+        opacity: 0.6;
+        &.active {
+          opacity: 1;
+        }
+        &:hover {
+          opacity: 1;
+        }
+        .subtitle {
+          padding: 10px;
+          font-size: 1.5em;
+          font-weight: bold;
+          max-width: 50%;
+          &.first, &.third {
+            border-radius: 0 0 20px 0;
+          }
+          &.second {
+            border-radius: 0 0 0 20px;
+          }
+        }
+      }
+    }
+    &.rect {
+      .comic-box {
+        height: 600px;
+      }
+      .subtitle {
+        max-width: 70%;
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 20px;
+        &.upper {
+          border-radius: 0 0 0 20px;
+        }
+        &.lower {
+          border-radius: 0 20px 0 0;
+        }
+      }
+    }
+    &.round {
+      .subtitle {
+        height: 150px;
+        margin-top: -40px;
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 20px;
+      }
+    }
+  }
+}

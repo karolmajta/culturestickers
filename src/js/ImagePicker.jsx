@@ -14,7 +14,9 @@ var ImagePicker = React.createClass({
             <div>
                 {_.map(images, function (i) {
                     return (
-                        <img src={i.url} key={i.url} onClick={(function () { this.props.onImageSelect(i); }).bind(this)}  />
+                      <div className="image-container image-container--3-in-row">
+                        <img className="image-responsive" src={i.url} key={i.url} onClick={(function () { this.props.onImageSelect(i); }).bind(this)}  />
+                      </div>
                     );
                 }, this)}
             </div>
